@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>A Discount for You</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"   
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+ </head>
+<body>
+
+<h2>Meghana Bobbili computes discounts</h2>
+
+<form class="form-group mb-3">
+    <label for="amount">Enter base amount</label>
+    <input type ="number" id="amount" name="amount" min=10 max=50 step=2 value=30> <br>
+
+    <label for="discounts">Enter the discount percentage</label>
+    <input type ="number" id="discounts" name="discounts" autofocus> <br>
+
+    <input type="button" class="btn btn-primary" onclick="discount()" value="Apply discount">
+</form>
+
+
+<p id="result">Answer</p>
+
+<form class="form-check mb-3">
+    <input type="radio" id="multiply" name="select" value="times" onclick="chooseOp()">
+    <label for="multiply">*</label></br>
+  
+    <input type="radio" id="division" name="select" value="divide" onclick="chooseOp()">
+    <label for="division">/</label></br>
+  
+    <input type="radio" id="expo" name="select" value="exponent" onclick="chooseOp()">
+    <label for="expo">**</label></br>
+
+  </form>
+  
+  <p id="output">results of slected radio button</p>
+
+<script> 
+
+function chooseOp(){
+    console.log("getting form values")
+    amount_value = document.getElementById("amount").value
+    discount_value = document.getElementById("discounts").value
+    mul = document.getElementById("multiply").checked
+    divi = document.getElementById("division").checked
+    exp = document.getElementById("expo").checked
+    out = document.getElementById("output")
+    
+    if(mul){
+        out.innerHTML="amount "+amount_value+" times "+"discount "+discount_value+" is "+(amount_value*discount_value);
+        
+    }
+    if(divi){
+        out.innerHTML="amount "+amount_value+" divide "+"discount "+discount_value+" is "+(amount_value/discount_value);
+       
+    }
+    if(exp){
+        out.innerHTML="amount "+amount_value+" exponent "+"discount "+discount_value+" is "+(amount_value**discount_value);
+       
+    }
+}
+
+function discount (){
+    console.log("Getting form values")
+    base_value = document.getElementById("amount").value
+    discount_value = document.getElementById("discounts").value
+    let result=''
+    for(let i=1;i<6;i++){
+        let r=(i*base_value)-((discount_value*i*base_value)/100);
+        result+=(' '+r);
+    }
+    out = document.getElementById("result")
+    out.innerHTML = "Discounted amounts for base "+base_value+" are "+result;
+}
+</script>
+
+</body>
+</html> 

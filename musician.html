@@ -2,12 +2,18 @@
 <html>
 <head>
     <title>Music is Love</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"   
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <h2>Musician guess by Meghana Bobbili</h2>
 
-<form>
+<form class="form-group mb-3">
     <label for="form_secret">Enter the secret musician name</label>
     <input type ="password" id="form_secret" name="form_secret" value="John Lennon"> 
     <br>
@@ -16,15 +22,18 @@
     <input type ="text" id="form_Guess" name="form_Guess">
     <br>
     <br>
-    <input type="button" onclick="checkGuess()" value="Check the guess">
+    <input class="btn btn-primary" type="button" onclick="checkGuess()" value="Check the guess">
 </form>
 
 
 <p id="result"></p>
-
+<div>
+    <img src="Beetle.jpg" alt="Beetle" id="pic" onclick="swapImage()" width="100" height="100">
+</div>
 <script> 
 var wrong=0
 var correct=0
+var total=0
 
 function checkGuess (){
     secret = document.getElementById("form_secret").value
@@ -32,11 +41,32 @@ function checkGuess (){
     val = secret.localeCompare(guess, undefined, { sensitivity: 'base' });
 if(val == 0) {
     correct++;
+    total=0;
     alert("You got it right");
 } else {
+    total++;
     wrong++;
+    if(total<3)
     alert("Wrong Musician");
+    else
+    alert("Sorry,game over")
 }
+}
+
+var useImage=1
+
+function swapImage(){
+    switch(useImage){
+        case 1: useImage=2;
+        document.getElementById("pic").src ="Orthoptera.jpg";
+        break;
+        case 2:useImage=3;
+        document.getElementById("pic").src="Lacewings.jpg";
+        break;
+        case 3:useImage=1;
+        document.getElementById("pic").src="Beetle.jpg";
+        break;
+    }
 }
 </script>
 
